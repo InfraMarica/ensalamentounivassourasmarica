@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mapa de Ensalamento Noturno | Univassouras & FACMAR</title>
+  <title>Sistema de Ensalamento | Univassouras & FACMAR</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Google Fonts: Plus Jakarta Sans -->
@@ -52,6 +52,113 @@
 </head>
 <body class="min-h-screen flex flex-col antialiased bg-[#fafaf9]">
 
+  <!-- ==================== HOMEPAGE: SELEÇÃO DE TURNO ==================== -->
+  <div id="homeScreen" class="fixed inset-0 z-50 bg-[#fafaf9] flex flex-col justify-between p-6 overflow-y-auto">
+    <!-- Topo Institucional da Homepage -->
+    <div class="max-w-5xl w-full mx-auto pt-4 flex items-center justify-between border-b border-stone-200 pb-4">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-2xl bg-[#7a001e] text-white flex items-center justify-center shadow-lg shadow-[#7a001e]/20">
+          <i data-lucide="building-2" class="w-6 h-6 text-amber-300"></i>
+        </div>
+        <div>
+          <span class="block text-xs font-black uppercase tracking-widest text-[#7a001e]">
+            UNIVASSOURAS CAMPUS MARICÁ E FACMAR
+          </span>
+          <h1 class="text-lg sm:text-xl font-black text-stone-900 tracking-tight">
+            Portal Integrado de Ensalamento Acadêmico
+          </h1>
+        </div>
+      </div>
+      <span class="text-xs sm:text-sm font-black text-[#7a001e] bg-[#7a001e]/10 px-3 py-1 rounded-lg border border-[#7a001e]/20">
+        Semestre 2027.1
+      </span>
+    </div>
+
+    <!-- Centro: Escolha de Turno -->
+    <div class="max-w-4xl w-full mx-auto my-auto py-8 text-center">
+      <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-200 mb-3">
+        <i data-lucide="calendar-clock" class="w-3.5 h-3.5 text-[#7a001e]"></i>
+        Selecione o Mapa que deseja acessar
+      </span>
+      <h2 class="text-2xl sm:text-4xl font-black text-stone-900 tracking-tight mb-2">
+        Escolha o Turno de Ensalamento
+      </h2>
+      <p class="text-xs sm:text-sm text-stone-500 max-w-xl mx-auto mb-8">
+        Cada turno possui mapas de salas, distribuição de turmas e relatórios em PDF independentes para os Campi 1 e 2.
+      </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+        <!-- Card 1: Manhã / Integral -->
+        <button 
+          type="button"
+          onclick="selectShiftAndEnter('MANHA')"
+          class="group relative bg-white hover:bg-amber-50/40 rounded-3xl p-6 sm:p-8 border-2 border-stone-200 hover:border-amber-500 shadow-md hover:shadow-xl transition-all duration-200 flex flex-col justify-between text-left cursor-pointer">
+          <div>
+            <div class="flex items-center justify-between mb-5">
+              <div class="w-14 h-14 rounded-2xl bg-amber-400/20 border border-amber-400/40 text-amber-700 flex items-center justify-center group-hover:scale-105 transition-transform">
+                <i data-lucide="sun" class="w-7 h-7 text-amber-600"></i>
+              </div>
+              <span class="inline-flex items-center gap-1 text-xs font-black uppercase tracking-wider text-amber-800 bg-amber-100 px-3 py-1 rounded-full border border-amber-200">
+                Diurno
+              </span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-black text-stone-900 group-hover:text-[#7a001e] transition-colors mb-1">
+              Manhã / Integral
+            </h3>
+            <p class="text-xs sm:text-sm text-stone-500 leading-relaxed">
+              Grade de ensalamento matutino e cursos de horário integral. Contém mapeamento de salas e quadro de turmas por curso.
+            </p>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
+            <span id="homeSummaryManha" class="text-xs font-bold text-stone-500">Carregando salas...</span>
+            <span class="inline-flex items-center gap-1.5 text-xs font-black text-[#7a001e] group-hover:translate-x-1 transition-transform">
+              <span>Acessar Mapa</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </div>
+        </button>
+
+        <!-- Card 2: Noturno -->
+        <button 
+          type="button"
+          onclick="selectShiftAndEnter('NOITE')"
+          class="group relative bg-white hover:bg-rose-50/30 rounded-3xl p-6 sm:p-8 border-2 border-stone-200 hover:border-[#7a001e] shadow-md hover:shadow-xl transition-all duration-200 flex flex-col justify-between text-left cursor-pointer">
+          <div>
+            <div class="flex items-center justify-between mb-5">
+              <div class="w-14 h-14 rounded-2xl bg-[#7a001e]/10 border border-[#7a001e]/20 text-[#7a001e] flex items-center justify-center group-hover:scale-105 transition-transform">
+                <i data-lucide="moon-star" class="w-7 h-7 text-[#7a001e]"></i>
+              </div>
+              <span class="inline-flex items-center gap-1 text-xs font-black uppercase tracking-wider text-[#7a001e] bg-rose-100/80 px-3 py-1 rounded-full border border-rose-200">
+                Noturno
+              </span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-black text-stone-900 group-hover:text-[#7a001e] transition-colors mb-1">
+              Noturno
+            </h3>
+            <p class="text-xs sm:text-sm text-stone-500 leading-relaxed">
+              Grade de ensalamento das turmas da noite nos Campi 1 e 2, distribuição automática e visualização por curso.
+            </p>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-stone-100 flex items-center justify-between">
+            <span id="homeSummaryNoite" class="text-xs font-bold text-stone-500">Carregando salas...</span>
+            <span class="inline-flex items-center gap-1.5 text-xs font-black text-[#7a001e] group-hover:translate-x-1 transition-transform">
+              <span>Acessar Mapa</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </span>
+          </div>
+        </button>
+      </div>
+    </div>
+
+    <!-- Rodapé da Homepage -->
+    <div class="max-w-5xl w-full mx-auto pt-4 border-t border-stone-200 flex flex-wrap items-center justify-between gap-2 text-xs text-stone-500">
+      <span>Univassouras Campus Maricá & FACMAR • Infraestrutura Acadêmica</span>
+      <span>Elaborado por <strong class="text-stone-800 font-bold">Jonas Florencio</strong></span>
+    </div>
+  </div>
+
   <!-- MENU FLUTUANTE DISCRETO DA TURMA (DUPLICAR / EXCLUIR) -->
   <div id="turmaActionMenu" class="hidden fixed z-50 w-44 bg-white rounded-xl shadow-xl border border-stone-200 py-1.5 text-xs">
     <div class="px-3 py-1 border-b border-stone-100 mb-1">
@@ -92,20 +199,32 @@
   <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-stone-200 shadow-xs">
     <div class="w-full px-4 sm:px-6 py-2.5 flex items-center justify-between gap-4">
       <div class="flex items-center gap-3">
+        <!-- Botão Voltar para Homepage (Seleção de Turno) -->
+        <button 
+          onclick="openHomeScreen()" 
+          title="Voltar à tela inicial para trocar de turno"
+          class="inline-flex items-center gap-1.5 px-2.5 py-2 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-700 font-bold text-xs border border-stone-200 transition-all shrink-0">
+          <i data-lucide="home" class="w-4 h-4 text-[#7a001e]"></i>
+          <span class="hidden md:inline">Início / Turnos</span>
+        </button>
+
         <div class="w-9 h-9 rounded-xl bg-[#7a001e] text-white flex items-center justify-center shadow-md shadow-[#7a001e]/20 shrink-0">
           <i data-lucide="building-2" class="w-5 h-5 text-amber-300"></i>
         </div>
         <div>
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-2 flex-wrap">
             <span class="block text-xs sm:text-[13px] font-black uppercase tracking-wider text-[#7a001e] leading-tight">
               UNIVASSOURAS CAMPUS MARICÁ E FACMAR
+            </span>
+            <span id="shiftHeaderBadge" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-black bg-amber-100 text-amber-900 border border-amber-300">
+              Noturno
             </span>
             <span id="roleStatusBadge" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-stone-100 text-stone-600 border border-stone-200">
               <i data-lucide="eye" class="w-3 h-3"></i> Somente Leitura
             </span>
           </div>
           <h1 class="text-sm sm:text-base font-black tracking-tight text-stone-900 leading-tight">
-            Mapa de Ensalamento Noturno <span id="headerCampusLabel" class="text-[#7a001e] font-bold">| Campus 2</span>
+            <span id="headerMainTitle">Mapa de Ensalamento Noturno</span> <span id="headerCampusLabel" class="text-[#7a001e] font-bold">| Campus 2</span>
           </h1>
         </div>
       </div>
@@ -124,12 +243,12 @@
             <span>Distribuir Turma</span>
           </button>
 
-          <button onclick="downloadBackupJSON()" title="Salvar dados em ficheiro JSON" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-bold text-stone-700 bg-white hover:bg-stone-50 border border-stone-200 rounded-lg shadow-xs transition-all">
+          <button onclick="downloadBackupJSON()" title="Salvar dados deste turno em ficheiro JSON" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-bold text-stone-700 bg-white hover:bg-stone-50 border border-stone-200 rounded-lg shadow-xs transition-all">
             <i data-lucide="download-cloud" class="w-3.5 h-3.5 text-stone-600"></i>
             <span class="hidden md:inline">Salvar Backup</span>
           </button>
 
-          <label title="Restaurar backup JSON" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-bold text-stone-700 bg-white hover:bg-stone-50 border border-stone-200 rounded-lg shadow-xs cursor-pointer transition-all">
+          <label title="Restaurar backup JSON neste turno" class="inline-flex items-center gap-1.5 px-2.5 py-1.5 text-xs font-bold text-stone-700 bg-white hover:bg-stone-50 border border-stone-200 rounded-lg shadow-xs cursor-pointer transition-all">
             <i data-lucide="upload-cloud" class="w-3.5 h-3.5 text-stone-600"></i>
             <span class="hidden md:inline">Restaurar</span>
             <input type="file" id="importJsonInput" accept=".json" class="hidden" onchange="importBackupJSON(event)">
@@ -190,6 +309,20 @@
     <div class="w-full px-4 sm:px-6 border-t border-stone-100 flex flex-wrap items-center justify-between gap-3 py-2 bg-stone-50/80">
       <div class="flex items-center gap-2.5 overflow-x-auto w-full sm:w-auto">
         
+        <!-- Seletor Rápido de Turno na Barra -->
+        <div class="inline-flex items-center gap-1 p-1 bg-stone-200/90 rounded-xl shadow-inner shrink-0">
+          <button id="btnQuickShiftManha" onclick="switchShift('MANHA')" class="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-black rounded-lg transition-all text-stone-600 hover:text-stone-900">
+            <i data-lucide="sun" class="w-3 h-3"></i>
+            <span>Manhã/Integral</span>
+          </button>
+          <button id="btnQuickShiftNoite" onclick="switchShift('NOITE')" class="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-black rounded-lg transition-all bg-[#7a001e] text-white shadow-xs">
+            <i data-lucide="moon" class="w-3 h-3"></i>
+            <span>Noturno</span>
+          </button>
+        </div>
+
+        <div class="h-6 w-px bg-stone-300 hidden sm:block"></div>
+
         <!-- Alternador Principal: Mapa de Salas vs Salas por Curso -->
         <div class="inline-flex items-center gap-1 p-1 bg-stone-200/90 rounded-xl shadow-inner shrink-0">
           <button id="btnViewRooms" onclick="switchViewMode('ROOMS')" class="inline-flex items-center gap-1.5 px-3 py-1 text-xs font-black rounded-lg transition-all bg-[#7a001e] text-white shadow-xs">
@@ -244,7 +377,7 @@
     <!-- Visão 1: Mapa de Salas por Bloco -->
     <div id="matricesContainer" class="space-y-8"></div>
 
-    <!-- Visão 2: Salas por Curso (Mais estreita e centralizada para leitura rápida) -->
+    <!-- Visão 2: Salas por Curso (Mais estreita e centralizada) -->
     <div id="coursesViewContainer" class="hidden max-w-5xl mx-auto space-y-5"></div>
   </main>
 
@@ -963,40 +1096,56 @@
       return result;
     }
 
-    const STORAGE_KEY = 'mapa_ensalamento_univassouras_2027_1_oficial_v10';
+    // CHAVES DE ARMAZENAMENTO POR TURNO (Preserva v10 para o Noturno)
+    const STORAGE_KEYS = {
+      NOITE: 'mapa_ensalamento_univassouras_2027_1_oficial_v10',
+      MANHA: 'mapa_ensalamento_univassouras_2027_1_manha_integral_v1'
+    };
     const ADMIN_PASS_KEY = 'mapa_ensalamento_univassouras_admin_pass';
-    let storedData = localStorage.getItem(STORAGE_KEY);
-    let multiCampusData;
 
-    if (storedData) {
-      try {
-        multiCampusData = JSON.parse(storedData);
-        Object.keys(multiCampusData).forEach(cKey => {
-          (multiCampusData[cKey] || []).forEach(block => {
-            (block.rooms || []).forEach(room => {
-              if (room.schedule) {
-                Object.keys(room.schedule).forEach(day => {
-                  if (room.schedule[day]) {
-                    room.schedule[day] = normalizeTurmaText(room.schedule[day]);
-                  }
-                });
-              }
+    function loadShiftDataset(shiftKey) {
+      const storageKey = STORAGE_KEYS[shiftKey];
+      const raw = localStorage.getItem(storageKey);
+      let data = null;
+
+      if (raw) {
+        try {
+          data = JSON.parse(raw);
+          Object.keys(data).forEach(cKey => {
+            (data[cKey] || []).forEach(block => {
+              (block.rooms || []).forEach(room => {
+                if (room.schedule) {
+                  Object.keys(room.schedule).forEach(day => {
+                    if (room.schedule[day]) {
+                      room.schedule[day] = normalizeTurmaText(room.schedule[day]);
+                    }
+                  });
+                }
+              });
             });
           });
-        });
-      } catch(e) {
-        multiCampusData = null;
+        } catch(e) {
+          data = null;
+        }
       }
+
+      if (!data || !data.CAMPUS_1) {
+        data = {
+          CAMPUS_1: JSON.parse(JSON.stringify(INITIAL_CAMPUS_1)),
+          CAMPUS_2: JSON.parse(JSON.stringify(INITIAL_CAMPUS_2))
+        };
+        localStorage.setItem(storageKey, JSON.stringify(data));
+      }
+      return data;
     }
 
-    if (!multiCampusData || !multiCampusData.CAMPUS_1) {
-      multiCampusData = {
-        CAMPUS_1: INITIAL_CAMPUS_1,
-        CAMPUS_2: INITIAL_CAMPUS_2
-      };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(multiCampusData));
-    }
+    let allShiftsData = {
+      NOITE: loadShiftDataset('NOITE'),
+      MANHA: loadShiftDataset('MANHA')
+    };
 
+    let activeShift = 'NOITE'; // 'MANHA' ou 'NOITE'
+    let multiCampusData = allShiftsData[activeShift];
     let activeCampus = 'CAMPUS_2';
     let activeViewMode = 'ROOMS';
     let selectedBlockFilter = 'ALL';
@@ -1007,7 +1156,21 @@
     let activeMenuTarget = null;
     let isAdmin = false;
 
+    function getShiftDisplayName(shift = activeShift) {
+      return shift === 'MANHA' ? 'Manhã / Integral' : 'Noturno';
+    }
+
+    function getShiftShortSlug(shift = activeShift) {
+      return shift === 'MANHA' ? 'Manha_Integral' : 'Noite';
+    }
+
+    function getShiftUpperTitle(shift = activeShift) {
+      return shift === 'MANHA' ? 'MANHÃ / INTEGRAL' : 'NOITE';
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
+      updateHomeSummaries();
+      updateShiftUI();
       updateAdminUI();
       updateCampusUI();
       renderTabs();
@@ -1021,6 +1184,98 @@
         closeTurmaActionMenu();
       }
     });
+
+    // GESTÃO DA HOMEPAGE E TROCA DE TURNO
+    function countShiftStats(dataset) {
+      let totalRooms = 0;
+      let allocatedSlots = 0;
+      Object.keys(dataset || {}).forEach(cKey => {
+        (dataset[cKey] || []).forEach(block => {
+          (block.rooms || []).forEach(room => {
+            totalRooms++;
+            if (room.schedule) {
+              Object.values(room.schedule).forEach(val => {
+                if (val && val.trim() !== '') allocatedSlots++;
+              });
+            }
+          });
+        });
+      });
+      return { totalRooms, allocatedSlots };
+    }
+
+    function updateHomeSummaries() {
+      const statsManha = countShiftStats(allShiftsData.MANHA);
+      const statsNoite = countShiftStats(allShiftsData.NOITE);
+
+      const elManha = document.getElementById('homeSummaryManha');
+      const elNoite = document.getElementById('homeSummaryNoite');
+
+      if (elManha) elManha.innerText = `${statsManha.totalRooms} Salas • ${statsManha.allocatedSlots} aulas alocadas`;
+      if (elNoite) elNoite.innerText = `${statsNoite.totalRooms} Salas • ${statsNoite.allocatedSlots} aulas alocadas`;
+    }
+
+    function openHomeScreen() {
+      clearCopyPasteMode();
+      closeTurmaActionMenu();
+      updateHomeSummaries();
+      document.getElementById('homeScreen').classList.remove('hidden');
+      safeCreateIcons();
+    }
+
+    function selectShiftAndEnter(shiftKey) {
+      switchShift(shiftKey);
+      document.getElementById('homeScreen').classList.add('hidden');
+      safeCreateIcons();
+    }
+
+    function switchShift(shiftKey) {
+      activeShift = shiftKey;
+      multiCampusData = allShiftsData[activeShift];
+      activeCampus = 'CAMPUS_2';
+      selectedBlockFilter = 'ALL';
+      selectedCourseFilter = 'ALL';
+      searchQuery = '';
+      const searchEl = document.getElementById('searchInput');
+      if (searchEl) searchEl.value = '';
+
+      clearCopyPasteMode();
+      closeTurmaActionMenu();
+      updateShiftUI();
+      updateCampusUI();
+      renderTabs();
+      renderActiveView();
+      safeCreateIcons();
+    }
+
+    function updateShiftUI() {
+      const badge = document.getElementById('shiftHeaderBadge');
+      const mainTitle = document.getElementById('headerMainTitle');
+      const btnQuickManha = document.getElementById('btnQuickShiftManha');
+      const btnQuickNoite = document.getElementById('btnQuickShiftNoite');
+
+      if (activeShift === 'MANHA') {
+        badge.className = 'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-black bg-amber-100 text-amber-900 border border-amber-300';
+        badge.innerHTML = `<i data-lucide="sun" class="w-3 h-3 text-amber-600"></i> Manhã / Integral`;
+        mainTitle.innerText = 'Mapa de Ensalamento Manhã / Integral';
+
+        btnQuickManha.className = 'inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-black rounded-lg transition-all bg-[#7a001e] text-white shadow-xs';
+        btnQuickNoite.className = 'inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-black rounded-lg transition-all text-stone-600 hover:text-stone-900';
+      } else {
+        badge.className = 'inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-black bg-rose-100 text-[#7a001e] border border-rose-200';
+        badge.innerHTML = `<i data-lucide="moon" class="w-3 h-3 text-[#7a001e]"></i> Noturno`;
+        mainTitle.innerText = 'Mapa de Ensalamento Noturno';
+
+        btnQuickNoite.className = 'inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-black rounded-lg transition-all bg-[#7a001e] text-white shadow-xs';
+        btnQuickManha.className = 'inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-black rounded-lg transition-all text-stone-600 hover:text-stone-900';
+      }
+
+      if (activeViewMode === 'COURSES') {
+        document.getElementById('headerCampusLabel').innerText = `| Salas por Curso (${getShiftDisplayName()})`;
+      } else {
+        document.getElementById('headerCampusLabel').innerText = `| ${formatCampusDisplayName(activeCampus)}`;
+      }
+    }
 
     // ALTERNAR ENTRE MAPA DE SALAS E SALAS POR CURSO
     function switchViewMode(mode) {
@@ -1063,7 +1318,7 @@
 
         matricesEl.classList.add('hidden');
         coursesEl.classList.remove('hidden');
-        headerLabel.innerText = '| Salas por Curso (Turmas Noite)';
+        headerLabel.innerText = `| Salas por Curso (${getShiftDisplayName()})`;
         document.getElementById('pdfBtnLabel').innerText = 'PDF (Salas por Curso)';
       }
 
@@ -1107,7 +1362,6 @@
     }
 
     function parseTurmaAllocationString(rawLine) {
-      // Extrai a quantidade de alunos antes de limpar a string
       const countMatch = rawLine.match(/\(\s*(\d+)\s*(?:alunos?)?\s*\)/i);
       const studentCount = countMatch ? countMatch[1] : null;
       const inlinePMR = /\[PMR\]/i.test(rawLine);
@@ -1243,8 +1497,8 @@
               <i data-lucide="info" class="w-4 h-4"></i>
             </div>
             <div>
-              <h2 class="text-xs sm:text-sm font-black text-stone-900 uppercase tracking-wide">Quadro de Salas por Curso • Turmas Noite</h2>
-              <p class="text-[11px] text-stone-500">Sincronizado automaticamente com as alocações e turmas do Mapa de Salas</p>
+              <h2 class="text-xs sm:text-sm font-black text-stone-900 uppercase tracking-wide">Quadro de Salas por Curso • Turno ${getShiftDisplayName()}</h2>
+              <p class="text-[11px] text-stone-500">Sincronizado automaticamente com as alocações e turmas do Mapa de Salas (${getShiftDisplayName()})</p>
             </div>
           </div>
 
@@ -1344,7 +1598,7 @@
                   `).join('') : `
                     <tr>
                       <td colspan="7" class="p-3.5 text-center text-xs text-stone-400 italic">
-                        Nenhuma turma de ${courseTitle} alocada no mapa até o momento.
+                        Nenhuma turma de ${courseTitle} alocada no turno ${getShiftDisplayName()} até o momento.
                       </td>
                     </tr>
                   `}
@@ -1358,7 +1612,7 @@
       container.innerHTML = html;
     }
 
-    // EXPORTAÇÃO EM PDF DO QUADRO "SALAS POR CURSO (TURMAS NOITE)"
+    // EXPORTAÇÃO EM PDF DO QUADRO "SALAS POR CURSO"
     function exportCoursesPDF() {
       const btn = document.getElementById('btnExportPDF');
       const originalHTML = btn.innerHTML;
@@ -1371,17 +1625,18 @@
           const coursesMap = buildCoursesDataFromMap();
           const daysOrder = ['SEGUNDA', 'TERÇA', 'QUARTA', 'QUINTA', 'SEXTA', 'SÁBADO'];
           const todayStr = new Date().toLocaleDateString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+          const shiftTitle = getShiftUpperTitle();
 
           const drawPageHeader = () => {
             doc.setFillColor(122, 0, 30);
             doc.rect(10, 8, 190, 16, 'F');
             doc.setFont('helvetica', 'bold');
-            doc.setFontSize(12);
+            doc.setFontSize(11.5);
             doc.setTextColor(255, 255, 255);
-            doc.text('ENSALAMENTO NOITE - 2027.1 - MARICÁ', 14, 14.5);
+            doc.text(`ENSALAMENTO ${shiftTitle} - 2027.1 - MARICÁ`, 14, 14.5);
             doc.setFontSize(8.5);
             doc.setTextColor(254, 240, 138);
-            doc.text('TURMAS NOITE • SALAS POR CURSO', 14, 20.5);
+            doc.text(`TURMAS ${shiftTitle} • SALAS POR CURSO`, 14, 20.5);
 
             doc.setFontSize(7.5);
             doc.setTextColor(255, 255, 255);
@@ -1487,11 +1742,11 @@
             doc.setPage(p);
             doc.setFontSize(7.5);
             doc.setTextColor(120, 113, 108);
-            doc.text('Univassouras • FACMAR • Infraestrutura Acadêmica • Turmas Noite', 10, 290);
+            doc.text(`Univassouras • FACMAR • Infraestrutura Acadêmica • Turno ${getShiftDisplayName()}`, 10, 290);
             doc.text(`Página ${p} de ${totalPages}`, 200, 290, { align: 'right' });
           }
 
-          doc.save('Ensalamento_Marica_2027.1_TURMAS_NOITE_Por_Curso.pdf');
+          doc.save(`Ensalamento_Marica_2027.1_TURMAS_${getShiftShortSlug().toUpperCase()}_Por_Curso.pdf`);
           showToast('PDF de Salas por Curso gerado com sucesso!');
         } catch (err) {
           console.error(err);
@@ -2017,7 +2272,7 @@
         renderActiveView();
       }
       safeCreateIcons();
-      showToast(`Turma "${turmaNome}" alocada com sucesso no ${formatCampusDisplayName(chosenCampus)}!`);
+      showToast(`Turma "${turmaNome}" alocada com sucesso no ${formatCampusDisplayName(chosenCampus)} (${getShiftDisplayName()})!`);
     }
 
     // DRAG & DROP + DUPLICAR TURMA
@@ -2465,7 +2720,7 @@
                     <span>Nova Sala</span>
                   </button>
                 ` : ''}
-                <span class="text-[10px] uppercase font-bold tracking-wider bg-black/20 px-2 py-1 rounded text-amber-200">${campusBadge}</span>
+                <span class="text-[10px] uppercase font-bold tracking-wider bg-black/20 px-2 py-1 rounded text-amber-200">${campusBadge} • ${getShiftDisplayName()}</span>
               </div>
             </div>
         `;
@@ -2528,7 +2783,7 @@
 
       document.getElementById('editBlockIdx').value = blockIdx;
       document.getElementById('editRoomIdx').value = roomIdx;
-      document.getElementById('modalBlocoSubtitle').innerText = `${block.bloco} • ${formatCampusDisplayName(activeCampus)}`;
+      document.getElementById('modalBlocoSubtitle').innerText = `${block.bloco} • ${formatCampusDisplayName(activeCampus)} (${getShiftDisplayName()})`;
       document.getElementById('editRoomName').value = room.sala;
       document.getElementById('editSubtitulo').value = room.subtitulo || '';
       document.getElementById('editAndar').value = room.andar || '';
@@ -2673,11 +2928,11 @@
       const downloadAnchor = document.createElement('a');
       const dateStr = new Date().toISOString().slice(0, 10);
       downloadAnchor.setAttribute("href", dataStr);
-      downloadAnchor.setAttribute("download", `backup_ensalamento_univassouras_c1_c2_2027_1_${dateStr}.json`);
+      downloadAnchor.setAttribute("download", `backup_ensalamento_${getShiftShortSlug().toLowerCase()}_2027_1_${dateStr}.json`);
       document.body.appendChild(downloadAnchor);
       downloadAnchor.click();
       downloadAnchor.remove();
-      showToast('Backup completo transferido!');
+      showToast(`Backup do turno ${getShiftDisplayName()} transferido!`);
     }
 
     function importBackupJSON(event) {
@@ -2690,7 +2945,8 @@
         try {
           const parsed = JSON.parse(e.target.result);
           if (parsed.CAMPUS_1 || parsed.CAMPUS_2) {
-            multiCampusData = parsed;
+            allShiftsData[activeShift] = parsed;
+            multiCampusData = allShiftsData[activeShift];
           } else if (Array.isArray(parsed)) {
             multiCampusData[activeCampus] = parsed;
           }
@@ -2698,7 +2954,7 @@
           renderTabs();
           renderActiveView();
           safeCreateIcons();
-          showToast('Backup JSON restaurado com sucesso!');
+          showToast(`Backup JSON restaurado no turno ${getShiftDisplayName()}!`);
         } catch (err) {
           console.error(err);
           showToast('Erro ao ler ficheiro JSON.');
@@ -2710,7 +2966,7 @@
 
     function openClearConfirmModal() {
       if (!isAdmin) return;
-      document.getElementById('clearConfirmDesc').innerText = `Esta ação vai esvaziar todas as turmas e cursos do ${formatCampusDisplayName(activeCampus)}, deixando as salas livres para novo ensalamento.`;
+      document.getElementById('clearConfirmDesc').innerText = `Esta ação vai esvaziar todas as turmas e cursos do ${formatCampusDisplayName(activeCampus)} no turno ${getShiftDisplayName()}, deixando as salas livres para novo ensalamento.`;
       document.getElementById('clearConfirmModal').classList.remove('hidden');
       safeCreateIcons();
     }
@@ -2732,11 +2988,13 @@
       closeClearConfirmModal();
       renderActiveView();
       safeCreateIcons();
-      showToast(`Todas as alocações do ${formatCampusDisplayName(activeCampus)} foram esvaziadas!`);
+      showToast(`Alocações do ${formatCampusDisplayName(activeCampus)} (${getShiftDisplayName()}) esvaziadas!`);
     }
 
     function saveToStorage() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(multiCampusData));
+      allShiftsData[activeShift] = multiCampusData;
+      localStorage.setItem(STORAGE_KEYS[activeShift], JSON.stringify(multiCampusData));
+      updateHomeSummaries();
     }
 
     function exportNativePDF(exportAll = false) {
@@ -2750,6 +3008,7 @@
           const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
           const blocks = getActiveCampusBlocks();
           const campusName = formatCampusDisplayName(activeCampus);
+          const shiftName = getShiftDisplayName();
 
           const blocksToExport = exportAll 
             ? blocks 
@@ -2782,7 +3041,7 @@
               doc.text('UNIVASSOURAS CAMPUS MARICÁ E FACMAR', 14, 15);
               doc.setFontSize(8);
               doc.setFont('helvetica', 'normal');
-              doc.text(`Quadro Integrado de Ensalamento Noturno (${campusName}) • Semestre 2027.1`, 14, 20);
+              doc.text(`Quadro Integrado de Ensalamento (${shiftName} • ${campusName}) • Semestre 2027.1`, 14, 20);
 
               doc.setFont('helvetica', 'bold');
               doc.setFontSize(11);
@@ -2797,7 +3056,7 @@
               doc.setFont('helvetica', 'bold');
               doc.setFontSize(10);
               doc.setTextColor(122, 0, 30);
-              doc.text(`${slice.label} - ${campusName.toUpperCase()}`, 14, 31.5);
+              doc.text(`${slice.label} - ${campusName.toUpperCase()} (${shiftName.toUpperCase()})`, 14, 31.5);
               doc.setFontSize(8);
               doc.setTextColor(100, 100, 100);
               doc.text(`${slice.rooms.length} SALAS ALOCADAS`, 280, 31.5, { align: 'right' });
@@ -2899,7 +3158,7 @@
 
               doc.setFontSize(7.5);
               doc.setTextColor(120, 113, 108);
-              doc.text(`Univassouras • FACMAR • Infraestrutura Acadêmica • ${campusName}`, 10, 202);
+              doc.text(`Univassouras • FACMAR • Infraestrutura Acadêmica • ${campusName} (${shiftName})`, 10, 202);
             });
           });
 
@@ -2909,9 +3168,10 @@
             doc.text(`Página ${p} de ${totalPages}`, 287, 202, { align: 'right' });
           }
 
+          const shiftSlug = getShiftShortSlug();
           const filename = exportAll 
-            ? `Ensalamento_${activeCampus}_Noite_TODOS_BLOCOS_2027.1.pdf`
-            : `Ensalamento_${activeCampus}_${(selectedBlockFilter.replace(/[^a-zA-Z0-9]/g, '_'))}_2027.1.pdf`;
+            ? `Ensalamento_${activeCampus}_${shiftSlug}_TODOS_BLOCOS_2027.1.pdf`
+            : `Ensalamento_${activeCampus}_${shiftSlug}_${(selectedBlockFilter.replace(/[^a-zA-Z0-9]/g, '_'))}_2027.1.pdf`;
 
           doc.save(filename);
           showToast('PDF gerado com sucesso!');
@@ -2946,11 +3206,11 @@
     function exportCSV() {
       if (!isAdmin) return;
       const blocks = getActiveCampusBlocks();
-      let csv = 'CAMPUS;BLOCO;SALA;ACESSIBILIDADE;SUBTITULO;ANDAR;CAPACIDADE;SEGUNDA;TERÇA;QUARTA;QUINTA;SEXTA;SÁBADO\n';
+      let csv = 'TURNO;CAMPUS;BLOCO;SALA;ACESSIBILIDADE;SUBTITULO;ANDAR;CAPACIDADE;SEGUNDA;TERÇA;QUARTA;QUINTA;SEXTA;SÁBADO\n';
       blocks.forEach(b => {
         b.rooms.forEach(r => {
           const isAcessivel = (r.acessibilidade === true) ? 'SIM' : 'NÃO';
-          csv += `"${formatCampusDisplayName(activeCampus)}";"${b.bloco}";"${r.sala}";"${isAcessivel}";"${r.subtitulo || ''}";"${r.andar || ''}";"${r.capacidade || ''}";"${normalizeTurmaText(r.schedule['SEGUNDA']||'').replace(/"/g, '""')}";"${normalizeTurmaText(r.schedule['TERÇA']||'').replace(/"/g, '""')}";"${normalizeTurmaText(r.schedule['QUARTA']||'').replace(/"/g, '""')}";"${normalizeTurmaText(r.schedule['QUINTA']||'').replace(/"/g, '""')}";"${normalizeTurmaText(r.schedule['SEXTA']||'').replace(/"/g, '""')}";"${normalizeTurmaText(r.schedule['SÁBADO']||'').replace(/"/g, '""')}"\n`;
+          csv += `"${getShiftDisplayName()}";"${formatCampusDisplayName(activeCampus)}";"${b.bloco}";"${r.sala}";"${isAcessivel}";"${r.subtitulo || ''}";"${r.andar || ''}";"${r.capacidade || ''}";"${normalizeTurmaText(r.schedule['SEGUNDA']||'').replace(/"/g, '""')}";"${normalizeTurmaText(r.schedule['TERÇA']||'').replace(/"/g, '""')}";"${normalizeTurmaText(r.schedule['QUARTA']||'').replace(/"/g, '""')}";"${normalizeTurmaText(r.schedule['QUINTA']||'').replace(/"/g, '""')}";"${normalizeTurmaText(r.schedule['SEXTA']||'').replace(/"/g, '""')}";"${normalizeTurmaText(r.schedule['SÁBADO']||'').replace(/"/g, '""')}"\n`;
         });
       });
 
@@ -2958,7 +3218,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `Ensalamento_${activeCampus}_Noite_2027.1.csv`;
+      a.download = `Ensalamento_${activeCampus}_${getShiftShortSlug()}_2027.1.csv`;
       a.click();
       URL.revokeObjectURL(url);
     }
